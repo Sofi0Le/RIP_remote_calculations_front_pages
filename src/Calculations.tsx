@@ -33,11 +33,11 @@ const CalculationsPage: FC = () => {
 
   const fetchCalculations = (searchText: string) => {
     // Fetch bouquet data using the relative path 
-    const filteredCalculations = mockCalculations.filter(bouquet =>
-      bouquet.calculation_name.toLowerCase().includes(searchText.toLowerCase())
+    const filteredCalculations = mockCalculations.filter(calculation =>
+      calculation.calculation_name.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    setCalculations(filteredCalculations );
+    setCalculations(filteredCalculations);
 
   };
 
@@ -83,7 +83,7 @@ const CalculationsPage: FC = () => {
                   <h5 className="card-title">{calculation.calculation_name}</h5>
                   <p className="card-text">{calculation.calculation_description}</p>
                   {/* Add more text elements here if needed */}
-                  <a href={`/calculations/${calculation.calculation_id}/`} className="btn btn-primary">
+                  <a href={`/RIP_remote_calculations_front_pages/#/calculations/${calculation.calculation_id}/`} className="btn btn-primary">
                     Подробнее
                   </a>
                 </div>

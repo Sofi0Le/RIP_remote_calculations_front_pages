@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 import './Calculations.css';
-import logoImage from './logo.png'; 
+import image_1 from '/images/image_1.jpg'
 
 interface Calculation {
   calculation_id: number;
@@ -10,6 +10,16 @@ interface Calculation {
   calculation_description: string;
   full_url: string;
 }
+
+const mockCalculations: Calculation[] = [
+  {
+    calculation_id: 1,
+    calculation_name: 'Подарочные корзины с цветами',
+    calculation_description: 'Наши подарочные корзины - это полный праздник в одной упаковке. Мы предлагаем широкий выбор букетов цветов, которые можно дополнить шоколадом, вином, ароматическими свечами или даже плюшевыми мишками. Отправьте этот прекрасный подарок с доставкой к двери, чтобы порадовать кого-то особенного.',
+    full_url: image_1,
+  },
+  // Add more mock bouquets as needed
+];
 
 const CalculationsPage: FC = () => {
   const navigateTo = useNavigate();
@@ -22,19 +32,13 @@ const CalculationsPage: FC = () => {
   const [searchValue, setSearchValue] = useState(searchParam);
 
   const fetchCalculations = (searchText: string) => {
-    // Fetch bouquet data using the relative path with query parameter
-    fetch(`/operations/?title=${searchText}`) // op or calc
-      .then(response => response.json())
-      .then(data => {
-      const calculationsData = data.calculations || [];
-      
-      console.log('Calculations fetched:', calculationsData);
-      setCalculations(calculationsData);
-      
-      })
-      .catch(error => {
-        console.error('Error fetching calculations:', error);
-      });
+    // Fetch bouquet data using the relative path 
+    const filteredCalculations = mockCalculations.filter(bouquet =>
+      bouquet.calculation_name.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    setCalculations(filteredCalculations );
+
   };
 
   const breadcrumbsItems = [
@@ -74,11 +78,7 @@ const CalculationsPage: FC = () => {
             {calculations.map((calculation) => (
             <div className="col" key={calculation.calculation_id}>
               <div className="card">
-              <img
-                  src={(calculation.full_url != '' && calculation.full_url !== 'http://localhost:9000/images/images/None') ? calculation.full_url : logoImage} // Use bouquet.full_url or default logoImage
-                  alt={calculation.calculation_name}
-                  className="card-img-top"
-                />
+              <img src={calculation.full_url} alt={calculation.calculation_name} className="card-img-top" />
                 <div className="card-body">
                   <h5 className="card-title">{calculation.calculation_name}</h5>
                   <p className="card-text">{calculation.calculation_description}</p>

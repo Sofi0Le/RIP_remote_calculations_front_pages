@@ -4,7 +4,7 @@ import Breadcrumbs from './Breadcrumbs';
 import './Calculations.css';
 import image_1 from '/images/image_1.png'
 import image_2 from '/images/image_2.png'
-import image_3 from '/images/image_3.png'
+import image_3 from '/images/image_3.jpg'
 import image_4 from '/images/image_4.jpg'
 import image_5 from '/images/image_5.png'
 

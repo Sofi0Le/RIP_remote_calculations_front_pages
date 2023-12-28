@@ -23,7 +23,7 @@ const CalculationsPage: FC = () => {
 
   const fetchCalculations = (searchText: string) => {
     // Fetch bouquet data using the relative path with query parameter
-    fetch(`/operations/?title=${searchText}`) // op or calc
+    fetch(`http://localhost:8000/api/operations/?title=${searchText}`) // op or calc
       .then(response => response.json())
       .then(data => {
       const calculationsData = data.calculations || [];

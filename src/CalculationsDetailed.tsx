@@ -21,7 +21,7 @@ const CalculationsDetailedPage: React.FC = () => {
   useEffect(() => {
     const fetchCalculationData = async () => {
       try {
-        const response = await fetch(`/operations/${id}`); // Assuming your API endpoint is like 'bouquets/id'
+        const response = await fetch(`http://localhost:8000/api/operations/${id}/`); // Assuming your API endpoint is like 'bouquets/id'
         const data = await response.json();
         setCalculationtData(data); // Update state with fetched data
       } catch (error) {
